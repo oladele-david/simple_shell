@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 
@@ -38,7 +39,25 @@ void execute_command(char *command)
 
 	args[arg_count] = NULL;
 
-	search_and_execute(command, args, path);
+	if (strcmp(args[0], "exit") == 0)
+	{
+		exit(EXIT_SUCCESS);
+	}
+
+	else if (strcmp(args[0], "env") == 0)
+	{
+		char **env_var = environ;
+
+		while (*env_var != NULL)
+		{
+			printf("%s\n", *env_var);
+			env_var++;
+		}
+	}
+	else
+	{
+		search_and_execute(command, args, path);
+	}
 }
 
 /**
