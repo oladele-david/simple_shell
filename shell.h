@@ -20,8 +20,6 @@ void display_prompt(void);
  *@command: The command to be executed.
  */
 void execute_command(char *command);
-void execute_direct_command(char *args[]);
-void execute_path_command(char *args[]);
 
 #endif /*SHELL_H */
 
