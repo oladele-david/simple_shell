@@ -8,7 +8,8 @@
 
 /**
  *execute_command - Execute a command in a child process.
- *@command: The command to be executed.
+ *@full_path: The full path to the executable command.
+ *@args: Array of command-line arguments.
  *
  *This function takes a command as input, tokenizes it, and executes it in a
  *child process using execvp. It searches for the command in the directories
@@ -41,12 +42,12 @@ void execute_command(char *command)
 }
 
 /**
- *execute_in_child - Execute a command in a child process.
- *@full_path: The full path to the executable command.
- *@args: Array of command-line arguments.
+ * execute_in_child - Execute a command in a child process.
+ * @full_path: The full path to the executable command.
+ * @args: Array of command-line arguments.
  *
- *This function forks a child process and executes the specified command
- *using execv. If the execution fails, it prints an error message.
+ * This function forks a child process and executes the specified command
+ * using execv. If the execution fails, it prints an error message.
  */
 
 static void execute_in_child(char *full_path, char *args[])
@@ -76,13 +77,15 @@ static void execute_in_child(char *full_path, char *args[])
  *command in the PATH directories.
  *@args: Array of command-line arguments.
  *@path: The PATH environment variable containing directories.
+ *@command: command-line arguments.
  *
  *This function searches for the command in the directories specified by the
  *PATH environment variable. If found, it executes the command in a child
  *process. If the command is not found, it prints an error message.
  */
 
-static void search_and_execute(char __attribute__((unused)) *command, char *args[], char *path)
+static void search_and_execute
+(char __attribute__((unused)) *command, char *args[], char *path)
 {
 	int status;
 
