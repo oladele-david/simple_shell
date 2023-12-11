@@ -3,6 +3,13 @@
 
 #define BUFFER_SIZE 11024
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
 /**
  *display_prompt - Display the shell prompt.
  */
@@ -13,6 +20,8 @@ void display_prompt(void);
  *@command: The command to be executed.
  */
 void execute_command(char *command);
-
+void execute_direct_command(char *args[]);
+void execute_path_command(char *args[]);
 
 #endif /*SHELL_H */
+

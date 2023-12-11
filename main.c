@@ -8,6 +8,7 @@
  *
  *Return: EXIT_SUCCESS on success, otherwise EXIT_FAILURE.
  */
+
 int main(void)
 {
 	char buffer[BUFFER_SIZE];
@@ -34,4 +35,3 @@ int main(void)
 
 	return (EXIT_SUCCESS);
 }
-
