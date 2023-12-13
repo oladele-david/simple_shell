@@ -1,28 +1,10 @@
-#ifndef SHELL_H
-#define SHELL_H
-
-#define BUFFER_SIZE 11024
-
+#include "shell.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-
-extern char **environ;
-
-/**
- *display_prompt - Display the shell prompt.
- */
-void display_prompt(void);
-
-/**
- *execute_command - Execute a command in a child process.
- *@command: The command to be executed.
- */
-void execute_command(char *command);
 
 /**
  * custom_strcmp - Compare two strings.
@@ -41,7 +23,16 @@ void execute_command(char *command);
  *    string, respectively.
  */
 
-int custom_strcmp(const char *s1, const char *s2);
+int custom_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 && (*s1 == *s2))
+	{
+		s1++;
+		s2++;
+	}
+
+	return (*(unsigned char *) s1 - *(unsigned char *) s2);
+}
 
 /**
  * custom_getenv - Get the value of an environment variable.
@@ -54,7 +45,7 @@ int custom_strcmp(const char *s1, const char *s2);
  * the variable is not found.
  */
 
-char *custom_getenv(const char *name);
-
-#endif /*SHELL_H */
-
+char *custom_getenv(const char *name)
+{
+	return (getenv(name));
+}

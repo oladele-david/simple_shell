@@ -25,7 +25,7 @@ static void search_and_execute(char *command, char *args[], char *path);
 
 void execute_command(char *command)
 {
-	char *path = getenv("PATH");
+	char **env_var = environ;
 
 	char *args[64];
 	int arg_count = 0;
@@ -39,15 +39,12 @@ void execute_command(char *command)
 
 	args[arg_count] = NULL;
 
-	if (strcmp(args[0], "exit") == 0)
+	if (custom_strcmp(args[0], "exit") == 0)
 	{
 		exit(EXIT_SUCCESS);
 	}
-
-	else if (strcmp(args[0], "env") == 0)
+	else if (custom_strcmp(args[0], "env") == 0)
 	{
-		char **env_var = environ;
-
 		while (*env_var != NULL)
 		{
 			printf("%s\n", *env_var);
@@ -56,6 +53,8 @@ void execute_command(char *command)
 	}
 	else
 	{
+		char *path = custom_getenv("PATH");
+
 		search_and_execute(command, args, path);
 	}
 }
